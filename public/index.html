@@ -5,9 +5,16 @@
     <title>Chat App</title>                 
 </head>
 <body>
-<p>Welcome to Chat App</p>                        <!--client side..(which is rendered on localhost)-->
+<p>Welcome to Chat App</p>        <!--client side..(which is rendered on localhost)-->
+    
+<ol class="messages"></ol>
+<form id="form">
+<input type="text" class="message" placeholder="Message">
+<input type="submit" value="Submit">
+</form> 
     
 <script src="/socket.io/socket.io.js"></script>
+<script src="/js/libs/jquery-3.3.1.min.js"></script>
 <script src="/js/index.js"></script>
     
 </body>

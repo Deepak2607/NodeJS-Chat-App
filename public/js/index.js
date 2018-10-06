@@ -8,16 +8,28 @@ socket.on('disconnect',()=> {
     console.log('Disconnected to server');
 })
                                              // when server is disconnected..it notifies client that    it is disconnected to server.(inside console)
-
-
 socket.on('newMessage',(message)=> {
     console.log('newMessage', message);
+    
+    const li= jQuery('<li></li>').text(`${message.from}:${message.text}`);
+    jQuery('.messages').append(li);
+})
+
+jQuery('form').submit((e)=> {
+//    alert('submitted');
+    e.preventDefault();
+    
+    socket.emit('createMessage',{
+        from:'User',
+        text:jQuery('.message').val()
+    })
+    jQuery('.message').val(null);
+ 
 })
 
 
-
 //socket.emit('createMessage',{
-//        from:'deepak@gmail.com',
+//        from:'deepu',
 //        text:'Hello'
 //    })
 
