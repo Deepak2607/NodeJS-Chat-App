@@ -8,6 +8,19 @@ socket.on('disconnect',()=> {
     console.log('Disconnected to server');
 })
                                              // when server is disconnected..it notifies client that    it is disconnected to server.(inside console)
+
+
+socket.on('newMessage',(message)=> {
+    console.log('newMessage', message);
+})
+
+
+
+//socket.emit('createMessage',{
+//        from:'deepak@gmail.com',
+//        text:'Hello'
+//    })
+
 //socket.on('newEmail',(email)=> {
 //    console.log('newEmail', email);
 //})
@@ -16,14 +29,5 @@ socket.on('disconnect',()=> {
 //        to:'deepak@gmail.com',
 //        text:'Hello'
 //    })
-
-socket.on('newMessage',(message)=> {
-    console.log('newMessage', message);
-})
-
-socket.emit('createMessage',{
-        to:'deepak@gmail.com',
-        text:'Hello'
-    })
 
 

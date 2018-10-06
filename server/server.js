@@ -21,7 +21,37 @@ io.on('connection',(socket)=> {
         console.log('User disconnected');
     })
                                                 // when client is disconnected..it notifies server that
-                                                // user is disconnected.(inside cmd)                     
+                                                // user is disconnected.(inside cmd)                    
+    
+    socket.emit('newMessage',{
+        from:'Admin',
+        text:'Welcome to chat app',
+        createdAt: new Date().getTime()
+    })
+    
+    socket.broadcast.emit('newMessage',{
+        from:'Admin',
+        text:'A new user joined group',
+        createdAt: new Date().getTime()
+    })
+    
+    socket.on('createMessage',(message)=> {
+        console.log('createMessage', message);
+        
+        io.emit('newMessage',{
+            from:message.from,
+            text:message.text,
+            createdAt:new Date().getTime()
+        })
+        
+//        socket.broadcast.emit('newMessage',{
+//            from:message.from,
+//            text:message.text,
+//            createdAt:new Date().getTime()
+//        })
+        
+    })
+    
 //    socket.emit('newEmail',{
 //        from:'admin@gmail.com',
 //        text:'Welcome to chat app',
@@ -32,15 +62,6 @@ io.on('connection',(socket)=> {
 //        console.log('createEmail', email)
 //    })
     
-    socket.emit('newMessage',{
-        from:'admin@gmail.com',
-        text:'Welcome to chat app',
-        createdAt:123
-    })
-    
-    socket.on('createMessage',(message)=> {
-        console.log('createMessage', message)
-    })
 })
 
                                                 
