@@ -2,6 +2,8 @@ const path= require('path');
 const express= require('express');
 const socketIO= require('socket.io');
 const http= require('http');
+const moment= require ('moment');
+
 
 const app= express();                            
                                                 //server side..(on cmd)
@@ -13,30 +15,30 @@ const io= socketIO(server);
 
 app.use(express.static(publicPath));
 
+
 io.on('connection',(socket)=> {
     console.log('New user connected');
                                                 // when client is connected..it notifies server that new 
-                                                // user is connected.(inside cmd)                 
-    
+    let time= new Date();                                           // user is connected.(inside cmd)         
     socket.emit('newMessage',{
         from:'Admin',
         text:'Welcome to chat app',
-        createdAt: new Date().getTime()
+        createdAt:moment(time).format('h:mm:ss a')
     })
     
     socket.broadcast.emit('newMessage',{
         from:'Admin',
         text:'A new user joined group',
-        createdAt: new Date().getTime()
+        createdAt:moment(time).format('h:mm:ss a')
     })
     
     socket.on('createMessage',(message)=> {
+        let time= new Date();
         console.log('createMessage', message);
-        
         io.emit('newMessage',{
             from:message.from,
             text:message.text,
-            createdAt:new Date().getTime()
+            createdAt:moment(time).format('h:mm:ss a')
         })
             
 //        socket.broadcast.emit('newMessage',{
@@ -48,11 +50,12 @@ io.on('connection',(socket)=> {
     })
     
      socket.on('createLocationMessage',(message)=>{
-        
+       let time= new Date();
         io.emit('newLocationMessage',{
             from:'Admin',
             url:`https://www.google.com/maps?q=${message.latitude},${message.longitude}`,
-            createdAt:new Date().getTime()
+            createdAt:moment(time).format('h:mm:ss a')
+            
         })
     })
     
