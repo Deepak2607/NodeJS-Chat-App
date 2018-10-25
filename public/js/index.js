@@ -13,9 +13,9 @@ socket.on('disconnect',()=> {
 socket.on('newMessage',(message)=> {
     console.log('newMessage', message);
    
-    const span1= jQuery('<span></span>').text(`${message.from}: `);
-    const span2= jQuery('<span></span>').text(`${message.text}`);
-    const span3= jQuery('<span style="float:right"></span>').text(`${message.createdAt}`);
+    const span1= jQuery('<span style="font-weight:bold"></span>').text(`${message.from}: `);
+    const span2= jQuery('<span></span>').text(` ${message.text}`);
+    const span3= jQuery('<span style="float:right;opacity:.5"></span>').text(`${message.createdAt}`);
     const p= jQuery('<p></p>');
     p.append(span1);
     p.append(span2);
