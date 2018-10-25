@@ -19,7 +19,10 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=> {
     console.log('New user connected');
                                                 // when client is connected..it notifies server that new 
-    let time= new Date();                                           // user is connected.(inside cmd)         
+                                              // user is connected.(inside cmd)  
+    let time= moment(); 
+    time.add(330, 'minutes');
+    
     socket.emit('newMessage',{
         from:'Admin',
         text:'Welcome to chat app',
@@ -33,7 +36,9 @@ io.on('connection',(socket)=> {
     })
     
     socket.on('createMessage',(message)=> {
-        let time= new Date();
+        let time= moment(); 
+        time.add(330, 'minutes');
+        
         console.log('createMessage', message);
         io.emit('newMessage',{
             from:message.from,
@@ -50,7 +55,9 @@ io.on('connection',(socket)=> {
     })
     
      socket.on('createLocationMessage',(message)=>{
-       let time= new Date();
+       let time= moment(); 
+       time.add(330, 'minutes');
+         
         io.emit('newLocationMessage',{
             from:'Admin',
             url:`https://www.google.com/maps?q=${message.latitude},${message.longitude}`,
