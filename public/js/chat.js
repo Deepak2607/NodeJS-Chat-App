@@ -4,6 +4,13 @@ var time= new Date().getTime();
 
 socket.on('connect',()=> {
     console.log('Connected to server');
+    const params= jQuery.deparam(window.location.search);
+    
+    socket.emit('join',params);
+    
+    const room= jQuery('<h4></h4>').text(`Group name: ${params.room}`);
+    jQuery('.room-name').append(room);
+   
     })
                                              // when server is connected..it notifies client that it    is connected to server.(inside console)
 socket.on('disconnect',()=> {
@@ -36,11 +43,11 @@ socket.on('newLocationMessage',(message)=>{
 })
 
 jQuery('form').submit((e)=> {
-//    alert('submitted');
+
     e.preventDefault();
-    
+    const params= jQuery.deparam(window.location.search);
     socket.emit('createMessage',{
-        from:'User',
+        from:params.name,
         text:jQuery('#message').val(),
     })
     jQuery('#message').val(null);

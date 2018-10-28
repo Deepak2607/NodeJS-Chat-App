@@ -23,18 +23,25 @@ io.on('connection',(socket)=> {
     let time= moment(); 
     time.add(330, 'minutes');
     
-    socket.emit('newMessage',{
+    
+    socket.on('join', (params)=>{
+        
+        socket.join(params.room);
+            
+        socket.emit('newMessage',{
         from:'Admin',
-        text:'Welcome to chat app',
+        text:`Welcome to chat app, ${params.name}`,
         createdAt:moment(time).format('h:mm:ss a')
+        }) 
+        
+        socket.broadcast.to(params.room).emit('newMessage',{
+        from:'Admin',
+        text:`${params.name} joined group`,
+        createdAt:moment(time).format('h:mm:ss a')
+        })
     })
     
-    socket.broadcast.emit('newMessage',{
-        from:'Admin',
-        text:'A new user joined group',
-        createdAt:moment(time).format('h:mm:ss a')
-    })
-    
+     
     socket.on('createMessage',(message)=> {
         let time= moment(); 
         time.add(330, 'minutes');
