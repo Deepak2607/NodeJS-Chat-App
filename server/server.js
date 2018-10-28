@@ -29,13 +29,13 @@ io.on('connection',(socket)=> {
         socket.join(params.room);
             
         socket.emit('newMessage',{
-        from:'Admin',
+        from:'Server',
         text:`Welcome to chat app, ${params.name}`,
         createdAt:moment(time).format('h:mm:ss a')
         }) 
         
         socket.broadcast.to(params.room).emit('newMessage',{
-        from:'Admin',
+        from:'Server',
         text:`${params.name} joined group`,
         createdAt:moment(time).format('h:mm:ss a')
         })
