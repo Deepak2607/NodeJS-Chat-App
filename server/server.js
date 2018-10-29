@@ -3,7 +3,7 @@ const express= require('express');
 const socketIO= require('socket.io');
 const http= require('http');
 const moment= require ('moment');
-
+const {Users}=require('./users'); 
 
 const app= express();                            
                                                 //server side..(on cmd)
@@ -12,6 +12,8 @@ const publicPath= path.join(__dirname, '../public');
 
 const server= http.createServer(app);
 const io= socketIO(server);
+
+const users= new Users();
 
 app.use(express.static(publicPath));
 
@@ -27,6 +29,10 @@ io.on('connection',(socket)=> {
     socket.on('join', (params)=>{
         
         socket.join(params.room);
+//        users.removeUser(socket.id);
+        users.addUser(socket.id, params.name, params.room);
+        
+        io.to(params.room).emit('updateUsersList', users.getUsersList(params.room));
             
         socket.emit('newMessage',{
         from:'Server',
@@ -74,21 +80,26 @@ io.on('connection',(socket)=> {
     })
     
         socket.on('disconnect',()=> {
-        console.log('User disconnected');
+        
+        
+        const user= users.removeUser(socket.id);
+        let time= moment(); 
+        time.add(330, 'minutes');
+       
+            
+        if(user){
+            console.log(`${user.name} disconnected`);
+            io.to(user.room).emit('updateUsersList', users.getUsersList(user.room));
+            socket.broadcast.to(user.room).emit('newMessage', {
+
+                from:'Server',
+                text:`${user.name} left group.`,
+                createdAt:moment(time).format('h:mm:ss a')    
+                })
+        }   
     })
                                                 // when client is disconnected..it notifies server that
-                                                // user is disconnected.(inside cmd)   
-    
-//    socket.emit('newEmail',{
-//        from:'admin@gmail.com',
-//        text:'Welcome to chat app',
-//        createdAt:123
-//    })
-//    
-//    socket.on('createEmail',(email)=> {
-//        console.log('createEmail', email)
-//    })
-    
+                                                // user is disconnected.(inside cmd)      
 })
 
                                                 

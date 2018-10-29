@@ -12,6 +12,10 @@ socket.on('connect',()=> {
     jQuery('.room-name').append(room);
    
     })
+
+socket.on('updateUsersList', (users)=>{
+    console.log('Users list: ',users);
+})
                                              // when server is connected..it notifies client that it    is connected to server.(inside console)
 socket.on('disconnect',()=> {
     console.log('Disconnected to server');
