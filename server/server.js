@@ -51,47 +51,28 @@ io.on('connection',(socket)=> {
     socket.on('createMessage',(message)=> {
         let time= moment(); 
         time.add(330, 'minutes');
+        const user= users.getUser(socket.id);
         
         console.log('createMessage', message);
-        io.emit('newMessage',{
+        io.to(user.room).emit('newMessage',{
             from:message.from,
             text:message.text,
             createdAt:moment(time).format('h:mm:ss a')
-        })
-            
-//        socket.broadcast.emit('newMessage',{
-//            from:message.from,
-//            text:message.text,
-//            createdAt:new Date().getTime()
-//        })
-        
+        })     
     })
     
-     socket.on('createLocationMessage',(message)=>{
-       let time= moment(); 
-       time.add(330, 'minutes');
-         
-        io.emit('newLocationMessage',{
-            from:'Admin',
-            url:`https://www.google.com/maps?q=${message.latitude},${message.longitude}`,
-            createdAt:moment(time).format('h:mm:ss a')
-            
-        })
-    })
     
-        socket.on('disconnect',()=> {
-        
-        
-        const user= users.removeUser(socket.id);
-        let time= moment(); 
-        time.add(330, 'minutes');
-       
-            
+    socket.on('disconnect',()=> {
+
+    const user= users.removeUser(socket.id);
+    let time= moment(); 
+    time.add(330, 'minutes');
+
         if(user){
             console.log(`${user.name} disconnected`);
             io.to(user.room).emit('updateUsersList', users.getUsersList(user.room));
-            socket.broadcast.to(user.room).emit('newMessage', {
 
+            socket.broadcast.to(user.room).emit('newMessage', {
                 from:'Server',
                 text:`${user.name} left group.`,
                 createdAt:moment(time).format('h:mm:ss a')    
@@ -99,7 +80,20 @@ io.on('connection',(socket)=> {
         }   
     })
                                                 // when client is disconnected..it notifies server that
-                                                // user is disconnected.(inside cmd)      
+                                                // user is disconnected.(inside cmd)    
+    
+    
+    //     socket.on('createLocationMessage',(message)=>{
+    //       let time= moment(); 
+    //       time.add(330, 'minutes');
+    //         
+    //        io.emit('newLocationMessage',{
+    //            from:'Admin',
+    //            url:`https://www.google.com/maps?q=${message.latitude},${message.longitude}`,
+    //            createdAt:moment(time).format('h:mm:ss a')
+    //            
+    //        })
+    //    })
 })
 
                                                 
