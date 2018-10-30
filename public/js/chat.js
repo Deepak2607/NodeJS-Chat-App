@@ -9,7 +9,7 @@ socket.on('connect',()=> {
     socket.emit('join',params);
     
     const room= jQuery('<h4></h4>').text(`Group name: ${params.room}`);
-    jQuery('.room-name').append(room);  
+    jQuery('.room-name').html(room);  
 })
                                              // when server is connected..it notifies client that it    is connected to server.(inside console)
 
