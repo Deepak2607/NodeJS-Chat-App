@@ -29,7 +29,7 @@ io.on('connection',(socket)=> {
     socket.on('join', (params)=>{
         
         socket.join(params.room);
-//        users.removeUser(socket.id);
+        users.removeUser(socket.id);
         users.addUser(socket.id, params.name, params.room);
         
         io.to(params.room).emit('updateUsersList', users.getUsersList(params.room));
