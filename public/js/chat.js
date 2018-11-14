@@ -8,8 +8,15 @@ socket.on('connect',()=> {
     
     socket.emit('join',params);
     
-    const room= jQuery('<h4></h4>').text(`Group name: ${params.room}`);
-    jQuery('.room-name').html(room);  
+    const room= jQuery('<h4></h4>').text(`Group ID: ${params.room}`);
+    jQuery('.room-name').html(room); 
+    
+    const linkText=jQuery('<span style="font-weight:bold"></span>').text(`Share link: `);
+    const link= jQuery('<span style="color:blue"></span>').text(`http://evening-plateau-47359.herokuapp.com/details.html?room=${params.room}`);
+    const p= jQuery('<p></p>');
+    p.append(linkText);
+    p.append(link);
+    jQuery('.link').html(p); 
 })
                                              // when server is connected..it notifies client that it    is connected to server.(inside console)
 

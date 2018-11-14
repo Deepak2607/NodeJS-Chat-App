@@ -5,17 +5,19 @@ const http= require('http');
 const moment= require ('moment');
 const {Users}=require('./users'); 
 
+
 const app= express();                            
                                                 //server side..(on cmd)
 const port= process.env.PORT || 8000;
+
 const publicPath= path.join(__dirname, '../public');
+app.use(express.static(publicPath));
 
 const server= http.createServer(app);
 const io= socketIO(server);
 
 const users= new Users();
 
-app.use(express.static(publicPath));
 
 
 io.on('connection',(socket)=> {

@@ -12,7 +12,7 @@
     <script>
     function myFunction() {
         const time= new Date().getTime();
-        location.href='/details.html?room='+time;
+        location.href='/details.html?room='+document.getElementById("id").value;
     }
     </script>
 </head>
@@ -27,17 +27,17 @@
 </form> 
 -->
   
-<div align="center" style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
-<div class="form-group">
-    <h3 align="center">Chat App</h3>
-</div> 
+<div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
 <form action="javascript:myFunction();"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Create a chat room</button>
+  <div class="form-group">
+    <h3 align="center">Chat App</h3>
+  </div> 
+  <div class="form-group">
+    <input type="text" name="id" id="id" class="form-control" placeholder="Enter Group ID" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Join room</button>
 </form>
     <br>
-<form action="/join_group.html"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Join a chat room</button>
-</form>
 <!--      <button id="send-location" class="btn btn-primary">Send Location</button>-->
 </div>
      

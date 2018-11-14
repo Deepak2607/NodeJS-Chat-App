@@ -10,11 +10,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
     <script>
-    function myFunction() {
-        const time= new Date().getTime();
-        location.href='/details.html?room='+time;
-    }
+//    function myFunction() {
+//        const time= new Date().getTime();
+//        return jQuery.deparam(window.location.search).room;
+//    }
+function myFunction()
+{
+    location.href='/chat.html?room='+jQuery.deparam(window.location.search).room+'&name='+document.getElementById("name").value;
+} 
     </script>
+    
 </head>
 <body style="margin-top:10%; width:30%;" class="container">
 
@@ -27,19 +32,29 @@
 </form> 
 -->
   
-<div align="center" style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
-<div class="form-group">
-    <h3 align="center">Chat App</h3>
-</div> 
+<div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
 <form action="javascript:myFunction();"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Create a chat room</button>
+  <div class="form-group">
+    <h3 align="center">Chat App</h3>
+  </div> 
+  <div class="form-group">
+    <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
+  </div>
+<!--
+  <div class="form-group">
+      <input type="text" name="room" id="room" class="form-control" required>
+  </div>
+-->
+  <button type="submit" class="btn btn-primary">Join</button>
 </form>
     <br>
-<form action="/join_group.html"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Join a chat room</button>
-</form>
 <!--      <button id="send-location" class="btn btn-primary">Send Location</button>-->
 </div>
      
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/libs/jquery-3.3.1.min.js"></script>
+<script src="/js/libs/deparam.js"></script>
+    
 </body>
 </html>
