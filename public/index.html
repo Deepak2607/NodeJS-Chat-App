@@ -11,8 +11,8 @@
     
     <script>
     function myFunction() {
-        const time= new Date().getTime();
-        location.href='/details.html?room='+time;
+        const random=  Math.floor(1000 + Math.random() * 9000);
+        location.href='/details.html?room='+random;
     }
     </script>
 </head>
