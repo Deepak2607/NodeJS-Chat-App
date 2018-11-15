@@ -12,7 +12,7 @@ socket.on('connect',()=> {
     jQuery('.room-name').html(room); 
     
     const linkText=jQuery('<span style="font-weight:bold"></span>').text(`Share link: `);
-    const link= jQuery('<span style="color:blue"></span>').text(`http://evening-plateau-47359.herokuapp.com/details.html?room=${params.room}`);
+    const link= jQuery('<span style="color:blue"></span>').text(`http://chat-app-2607.herokuapp.com/details.html?room=${params.room}`);
     const p= jQuery('<p></p>');
     p.append(linkText);
     p.append(link);
