@@ -6,15 +6,19 @@ const moment= require ('moment');
 const {Users}=require('./users'); 
 
 
-const app= express();                            
-                                                //server side..(on cmd)
+const app= express();                                      //server side..(on cmd)
 const port= process.env.PORT || 8000;
 
+
+//defining path for public directory
 const publicPath= path.join(__dirname, '../public');
 app.use(express.static(publicPath));
 
+
+//creating socket webserver
 const server= http.createServer(app);
 const io= socketIO(server);
+
 
 const users= new Users();
 
@@ -23,7 +27,7 @@ const users= new Users();
 io.on('connection',(socket)=> {
     console.log('New user connected');
                                                 // when client is connected..it notifies server that new 
-                                              // user is connected.(inside cmd)  
+                                                // user is connected.(inside cmd)  
     let time= moment(); 
     time.add(330, 'minutes');
     
@@ -83,7 +87,24 @@ io.on('connection',(socket)=> {
     })
                                                 // when client is disconnected..it notifies server that
                                                 // user is disconnected.(inside cmd)    
-    
+})
+
+                                                
+
+server.listen(port, ()=> {
+    console.log(`local server is started at ${port}`);
+})
+
+
+
+
+
+
+
+
+
+
+
     
     //     socket.on('createLocationMessage',(message)=>{
     //       let time= moment(); 
@@ -96,10 +117,3 @@ io.on('connection',(socket)=> {
     //            
     //        })
     //    })
-})
-
-                                                
-
-server.listen(port, ()=> {
-    console.log(`local server is started at ${port}`);
-})
