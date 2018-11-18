@@ -4,6 +4,7 @@ var time= new Date().getTime();
 
 socket.on('connect',()=> {
     console.log('Connected to server'); 
+    
     const params= jQuery.deparam(window.location.search);
     
     socket.emit('join',params);
@@ -66,6 +67,21 @@ socket.on('newMessage',(message)=> {
 })
 
 
+
+socket.on('disconnect',()=> {
+    console.log('Disconnected to server');
+})
+                                             // when server is disconnected..it notifies client that    it is disconnected to server.(inside console)
+
+
+
+
+
+
+
+
+
+
 //socket.on('newLocationMessage',(message)=>{
 //   
 //    const span1= jQuery('<span></span>').text(`${message.from}: `);
@@ -95,9 +111,3 @@ socket.on('newMessage',(message)=> {
 //        alert('Unable to fetch location');
 //    },{timeout: 30000, enableHighAccuracy: true, maximumAge: 75000})
 //})
-
-
-socket.on('disconnect',()=> {
-    console.log('Disconnected to server');
-})
-                                             // when server is disconnected..it notifies client that    it is disconnected to server.(inside console)

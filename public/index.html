@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
+    
     <script>
     function myFunction() {
         const random= Math.floor(1000 + Math.random() * 9000);
@@ -16,30 +17,31 @@
     }
     </script>
 </head>
-<body style="margin-top:10%; width:30%;" class="container">
-
-    <!--client side..(which is rendered on localhost)-->
     
-<!--
-<form id="form">
-<input type="text" class="message" placeholder="Message">
-<input type="submit" value="Submit">
-</form> 
--->
-  
-<div align="center" style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
-<div class="form-group">
-    <h3 align="center">Chat App</h3>
-</div> 
-<form action="javascript:myFunction();"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Create a chat room</button>
-</form>
-    <br>
-<form action="/join_group.html"  enctype="multipart/form-data">
-  <button type="submit" class="btn btn-primary">Join a chat room</button>
-</form>
-<!--      <button id="send-location" class="btn btn-primary">Send Location</button>-->
-</div>
+    
+    
+<body style="margin-top:10%; width:100%;" class="container">
+ 
+    <div class="col-md-4">
+    </div>
+    
+    <div class="col-md-4">
+    <div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
+    <div class="form-group">
+        <h3 align="center">Chat App</h3>
+    </div> 
+    <form action="javascript:myFunction();"  enctype="multipart/form-data">
+      <button type="submit" class="btn btn-primary">Create a chat room</button>
+    </form>
+        <br>
+    <form action="/join_group.html"  enctype="multipart/form-data">
+      <button type="submit" class="btn btn-primary">Join a chat room</button>
+    </form>
+    </div>
+    </div>
+    
+    <div class="col-md-4">
+    </div>
      
 </body>
 </html>

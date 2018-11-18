@@ -9,10 +9,12 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 </head>
-<body style="margin-top:2%; width:50%;" class="container">
+    
+    
+    
+    
+<body style="margin-top:2%; width:100%" class="container">
 
-    <!--client side..(which is rendered on localhost)-->
-  
 <div  style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
     
 <div class="row">
@@ -25,21 +27,19 @@
 <div class="col-md-9">
 <div class="room-name"></div><br>
 <p class="link"></p>
-<div style="list-style-type:none" class="messages"></div>
-    
+<div style="list-style-type:none" class="messages"></div>   
 <form id="form">
   <div class="form-group">
     <input type="text" id="message" class="form-control" placeholder="Message" required>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form>  
 </div>
-    <br>
-<!--      <button id="send-location" class="btn btn-primary">Send Location</button>-->
+    
+<br>
 </div>
 </div>
      
-    
     
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/libs/jquery-3.3.1.min.js"></script>

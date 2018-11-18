@@ -10,10 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     
     <script>
-//    function myFunction() {
-//        const time= new Date().getTime();
-//        return jQuery.deparam(window.location.search).room;
-//    }
 function myFunction()
 {
     location.href='/chat.html?room='+jQuery.deparam(window.location.search).room+'&name='+document.getElementById("name").value;
@@ -21,17 +17,11 @@ function myFunction()
     </script>
     
 </head>
-<body style="margin-top:10%; width:30%;" class="container">
-
-    <!--client side..(which is rendered on localhost)-->
     
-<!--
-<form id="form">
-<input type="text" class="message" placeholder="Message">
-<input type="submit" value="Submit">
-</form> 
--->
-  
+    
+    
+<body style="margin-top:10%; width:30%;" class="container">
+    
 <div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
 <form action="javascript:myFunction();"  enctype="multipart/form-data">
   <div class="form-group">
@@ -40,15 +30,9 @@ function myFunction()
   <div class="form-group">
     <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
   </div>
-<!--
-  <div class="form-group">
-      <input type="text" name="room" id="room" class="form-control" required>
-  </div>
--->
   <button type="submit" class="btn btn-primary">Join</button>
 </form>
     <br>
-<!--      <button id="send-location" class="btn btn-primary">Send Location</button>-->
 </div>
      
 
