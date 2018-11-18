@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat App</title> 
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -20,21 +20,32 @@ function myFunction()
     
     
     
-<body style="margin-top:10%; width:30%;" class="container">
-    
-<div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
-<form action="javascript:myFunction();"  enctype="multipart/form-data">
-  <div class="form-group">
-    <h3 align="center">Chat App</h3>
-  </div> 
-  <div class="form-group">
-    <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Join</button>
-</form>
-    <br>
-</div>
-     
+<body style="margin-top:10%;" class="container">
+  
+    <div class="row">
+        
+    <div class="col-md-4">
+    </div>
+        
+    <div class="col-md-4">
+    <div style="box-shadow: 2px 2px 4px 3px lightgrey; padding: 20px">
+    <form action="javascript:myFunction();"  enctype="multipart/form-data">
+      <div class="form-group">
+        <h3 align="center">Chat App</h3>
+      </div> 
+      <div class="form-group">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Join</button>
+    </form>
+        <br>
+    </div>
+    </div>
+        
+    <div class="col-md-4">
+    </div>
+        
+    </div> 
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/libs/jquery-3.3.1.min.js"></script>
